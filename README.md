@@ -15,13 +15,10 @@ Built a fully-functional Angular project. The MyStore project covers everything 
 - Open CMD inside the ```console MyStore``` Folder
 - Run the following code into terminal : 
  ```console
-//to install angular cli
 npm install -g @angular/cli
 
-//to install npm modules
 npm install
 
-//to open up the project
 ng serve -o
 ```
 
