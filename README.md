@@ -1,11 +1,14 @@
 # MyStore-App
-![edited](https://user-images.githubusercontent.com/90541446/179365894-1a769278-585f-40df-bb02-b155b1cf8413.gif)
 
 Built a fully-functional Angular project. The MyStore project covers everything about components, modules, services, HTTP, and user input.
+
+# Demo
+![edited](https://user-images.githubusercontent.com/90541446/179365894-1a769278-585f-40df-bb02-b155b1cf8413.gif)
 
 # Table of contents
 
 - [MyStore App](#MyStore-App)
+- [Demo](#Demo)
 - [Table of contents](#table-of-contents)
 - [Installation](#installation)
 
