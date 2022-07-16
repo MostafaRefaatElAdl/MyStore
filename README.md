@@ -12,7 +12,7 @@ Built a fully-functional Angular project. The MyStore project covers everything 
 # Installation
 
 - Clone the project
-- Open CMD inside the ```console MyStore``` Folder
+- Open CMD inside the ``` MyStore``` Folder
 - Run the following code into terminal : 
  ```console
 npm install -g @angular/cli
