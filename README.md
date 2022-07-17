@@ -1,27 +1,27 @@
 # MyStore-App
-![image]()
 
 Built a fully-functional Angular project. The MyStore project covers everything about components, modules, services, HTTP, and user input.
+
+# Demo
+![edited](https://user-images.githubusercontent.com/90541446/179365894-1a769278-585f-40df-bb02-b155b1cf8413.gif)
 
 # Table of contents
 
 - [MyStore App](#MyStore-App)
+- [Demo](#Demo)
 - [Table of contents](#table-of-contents)
 - [Installation](#installation)
 
 # Installation
 
 - Clone the project
-- Open CMD inside the ```console MyStore``` Folder
+- Open CMD inside the ``` MyStore``` Folder
 - Run the following code into terminal : 
  ```console
-//to install angular cli
 npm install -g @angular/cli
 
-//to install npm modules
 npm install
 
-//to open up the project
 ng serve -o
 ```
 
