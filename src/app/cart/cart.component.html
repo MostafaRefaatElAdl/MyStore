@@ -68,14 +68,21 @@
         <div class="mb-3">
           <label for="creditCard" class="form-label">Credit Card Number <i class="fa fa-credit-card"
             aria-hidden="true"></i></label>
-            <input type="number"
+            <input type="text"
             required
+            minlength="16"
+            maxlength="16"
+            oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"
             [ngStyle]="{'border-color' : cCard.invalid && (cCard.dirty || cCard.touched) ? 'tomato':'#ced4da'}"
             class="form-control" name="creditCard" [(ngModel)]="creditCard"
-            #cCard="ngModel">
+            #cCard="ngModel"
+            >
           <div *ngIf="cCard.invalid && (cCard.dirty || cCard.touched)">
             <div *ngIf="cCard.errors?.['required']" class="form-text text-danger">
               Please Enter Your Credit Card Number
+            </div>
+            <div *ngIf="cCard.errors?.['minlength'] || cCard.errors?.['maxlength']" class="form-text text-danger">
+              Please Enter 16 digits
             </div>
           </div>
         </div>

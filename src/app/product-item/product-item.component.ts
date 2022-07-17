@@ -8,46 +8,54 @@ import { ProductService } from '../product.service';
 @Component({
   selector: 'app-product-item',
   templateUrl: './product-item.component.html',
-  styleUrls: ['./product-item.component.css']
+  styleUrls: ['./product-item.component.css'],
 })
 export class ProductItemComponent implements OnInit {
-  
-  @Input() productToShow:Product=new Product();
-  @Input() listProduct:boolean=true;
-  @Input() userSelectedValue:number = 1;
-  @Output() decrees: EventEmitter<number> = new EventEmitter;
-  @Output() refreshPrice: EventEmitter<OrderItem> = new EventEmitter;
-  userQuantity:number [] = [1,2,3,4,5,6];
-  userOrder:OrderItem;
-  displayStyle:string = "none";
-  constructor(private productService:ProductService, private cartService:CartService) { 
-    this.userOrder=new OrderItem();
+  @Input() productToShow: Product = new Product();
+  @Input() listProduct: boolean = true;
+  @Input() userSelectedValue: number = 1;
+  @Output() decrees: EventEmitter<number> = new EventEmitter();
+  @Output() refreshPrice: EventEmitter<OrderItem> = new EventEmitter();
+  userQuantity: number[] = [1, 2, 3, 4, 5, 6];
+  userOrder: OrderItem;
+  displayStyle: string = 'none';
+  constructor(
+    private productService: ProductService,
+    private cartService: CartService
+  ) {
+    this.userOrder = new OrderItem();
   }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
-  addToCart(){
-    this.userOrder.product= this.productToShow;
-    this.userOrder.quantity= this.userSelectedValue;
+  addToCart() {
+    this.userOrder.product = this.productToShow;
+    this.userOrder.quantity = this.userSelectedValue;
+    if (this.cartService.increaseQuantityIfExist(this.userOrder)) {
+      this.displayStyle = 'block';
+      return;
+    }
     this.cartService.addToCart(this.userOrder);
-    this.displayStyle = "block"
+    this.displayStyle = 'block';
   }
 
-  removeFromCart(){
-    if (confirm(`Are You Sure You want to delete ${this.productToShow.name} from cart?`)) {
-      this.cartService.removeFromCart(this.productToShow,this.decrees)
-    } 
+  removeFromCart() {
+    if (
+      confirm(
+        `Are You Sure You want to delete ${this.productToShow.name} from cart?`
+      )
+    ) {
+      this.cartService.removeFromCart(this.productToShow, this.decrees);
+    }
   }
 
-  quantityChanged(newQuantity:number){
-    this.userOrder.product= this.productToShow;
-    this.userOrder.quantity= newQuantity;
+  quantityChanged(newQuantity: number) {
+    this.userOrder.product = this.productToShow;
+    this.userOrder.quantity = newQuantity;
     this.refreshPrice.emit(this.userOrder);
   }
 
   closePopup() {
-    this.displayStyle = "none";
+    this.displayStyle = 'none';
   }
-
 }

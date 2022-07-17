@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Cart } from 'src/models/cart';
 import { OrderItem } from 'src/models/order';
@@ -13,14 +14,16 @@ export class CartComponent implements OnInit {
   
   cartOrders: Cart;
   totalPrice: number = 0;
-  userName:String="";
-  userAddress:String="";
-  creditCard!:number;
+  userName:string="";
+  userAddress:string="";
+  creditCard:string="";
 
-  constructor(private cartService: CartService, private router: Router) {
+  constructor(private fb: FormBuilder, private cartService: CartService, private router: Router) {
     this.cartOrders = cartService.cartToList;
   }
 
+
+  
   ngOnInit(): void {
     this.calcPrice()
   }
@@ -45,4 +48,6 @@ export class CartComponent implements OnInit {
     this.router.navigate(['confirmation'],{ queryParams: {FullName:this.userName, price:this.totalPrice} })
     this.cartService.resetCart();
     }
+
+
 }

@@ -48,4 +48,14 @@ export class CartService {
   resetCart(){
     this.cartToList.orders=[];
   }
+
+  increaseQuantityIfExist(userChangedOrder:OrderItem):boolean{
+    for (let i = 0; i < this.cartToList.orders.length; i++) {
+      if (this.cartToList.orders[i].product.id === userChangedOrder.product.id) {
+        this.cartToList.orders[i].quantity = userChangedOrder.quantity
+        return true;
+      } ;
+    }
+    return false;
+  }
 }

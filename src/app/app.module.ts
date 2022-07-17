@@ -10,7 +10,7 @@ import { ProductItemComponent } from './product-item/product-item.component';
 import { ConfirmationComponent } from './confirmation/confirmation.component';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http'
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
@@ -29,6 +29,7 @@ import { AppRoutingModule } from './app-routing.module';
     FormsModule,
     HttpClientModule,
     AppRoutingModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
