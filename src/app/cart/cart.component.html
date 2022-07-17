@@ -1,0 +1,87 @@
+<div class="container">
+  <div class="row m-3">
+    <div class="col">
+      <!--  User order + Total Price  -->
+      <app-product-item *ngFor="let order of cartOrders.orders" [listProduct]="false" [productToShow]="order.product"
+        [userSelectedValue]="order.quantity" (decrees)="decreesTotalPrice($event)" (refreshPrice)="changePrice($event)">
+      </app-product-item>
+
+      <h4 *ngIf="totalPrice !== 0; else EmptyCart">Total Price {{totalPrice}}$</h4>
+      <ng-template #EmptyCart>
+        <div class="container-fluid  mt-100">
+          <div class="row">
+            <div class="col-12">
+              <div class="card">
+                <div class="card-body cart">
+                  <div class="col-sm-12 empty-cart-cls text-center">
+                    <img src="https://cdn-icons-png.flaticon.com/512/2038/2038854.png" width="130" height="130"
+                      class="img-fluid mb-4 mr-3">
+                    <h3><strong>Your Cart is Empty</strong></h3>
+                    <h4>Add something to the Cart to Submit your Order</h4>
+                    <a routerLink="/" class="btn btn-primary cart-btn-transform m-3" data-abc="true">Continue
+                      Shopping</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+    </div>
+    <div *ngIf="totalPrice !== 0;" class="col">
+      <!--User information Form + Submit btn  -->
+
+      <form  #cartForm="ngForm" (ngSubmit)="submitOrder()">
+
+        <div class="mb-3">
+          <label for="fullName" class="form-label">Full Name <i class="fa fa-id-card" aria-hidden="true"></i></label>
+          <input type="text"
+            [ngStyle]="{'border-color' : fullName.invalid && (fullName.dirty || fullName.touched) ? 'tomato':'#ced4da'}"
+            class="form-control" name="fullName" required minlength="5" maxlength="40" [(ngModel)]="userName"
+            #fullName="ngModel">
+          <div *ngIf="fullName.invalid && (fullName.dirty || fullName.touched)">
+            <div *ngIf="fullName.errors?.['required']" class="form-text text-danger">
+              Please Enter Your Full Name
+            </div>
+            <div *ngIf="fullName.errors?.['minlength']" class="form-text text-danger">
+              Please Enter from 5 to 40 character
+            </div>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label for="Address" class="form-label">Address <i class="fa fa-map-o" aria-hidden="true"></i> </label>
+          <input type="text"
+            [ngStyle]="{'border-color' : address.invalid && (address.dirty || address.touched) ? 'tomato':'#ced4da'}"
+            class="form-control" name="Address" required minlength="6" maxlength="200" [(ngModel)]="userAddress"
+            #address="ngModel">
+          <div *ngIf="address.invalid && (address.dirty || address.touched)">
+            <div *ngIf="address.errors?.['required']" class="form-text text-danger">
+              Please Enter Your Address
+            </div>
+            <div *ngIf="address.errors?.['minlength']" class="form-text text-danger">
+              Please Enter from 5 to 200 character
+            </div>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label for="creditCard" class="form-label">Credit Card Number <i class="fa fa-credit-card"
+            aria-hidden="true"></i></label>
+            <input type="number"
+            required
+            [ngStyle]="{'border-color' : cCard.invalid && (cCard.dirty || cCard.touched) ? 'tomato':'#ced4da'}"
+            class="form-control" name="creditCard" [(ngModel)]="creditCard"
+            #cCard="ngModel">
+          <div *ngIf="cCard.invalid && (cCard.dirty || cCard.touched)">
+            <div *ngIf="cCard.errors?.['required']" class="form-text text-danger">
+              Please Enter Your Credit Card Number
+            </div>
+          </div>
+        </div>
+
+        <input type="submit" [ngClass]="cartForm.invalid ? 'btn btn-danger':'btn btn-success' " [disabled]="cartForm.invalid" value="Submit" />
+      </form>
+    </div>
+  </div>
+</div>

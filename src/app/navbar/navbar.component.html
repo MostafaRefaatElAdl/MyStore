@@ -1,0 +1,27 @@
+<nav class="navbar navbar-expand navbar-dark bg-dark p-3">
+  <a class="navbar-brand" routerLink="/"> <img src="../../favicon.ico" alt="" width="30" height="24"> MyStore</a>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav me-auto ">
+      <li class="nav-item active">
+        <a class="nav-link" routerLink="/">Product List <span class="sr-only">(current)</span></a>
+      </li>
+    </ul>
+    <ul class="navbar-nav ms-auto">
+      <li class="nav-item active">
+        <a class="  ms-auto" style="text-decoration:none ;" routerLink="/cart">
+          <div class="d-flex  flex-row align-items-center">
+            <span *ngIf="navCart.orders.length>0"> <i class="fa fa-shopping-cart text-light" aria-hidden="true"></i>
+            </span>
+            <span *ngIf="navCart.orders.length===0"> <i class="fa fa-cart-plus text-light" aria-hidden="true"></i>
+            </span>
+            <div class="d-flex flex-column ms-2">
+              <span *ngIf="navCart.orders.length>0" class="text-light">{{navCart.orders.length}} {{navCart.orders.length
+                > 1 ? 'Products':'Product'}} </span>
+            </div>
+          </div>
+        </a>
+      </li>
+    </ul>
+
+  </div>
+</nav>

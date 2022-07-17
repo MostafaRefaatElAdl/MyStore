@@ -1,0 +1,64 @@
+<div *ngIf="listProduct; else cartProduct" class="card text-center" style="width: 18rem;">
+  <a [routerLink]="[ '/details', productToShow.id ]">
+  <img class="card-img-top" src={{productToShow.url}} alt="Card image cap">
+  </a>
+  <div class="card-body">
+    <h5 class="card-title">{{productToShow.name}}</h5>
+    <p class="card-text">{{productToShow.description}}</p>
+    <h5 class="card-title">{{productToShow.price}}$</h5>
+    <select [(ngModel)]='userSelectedValue' class="form-select mb-2" aria-label="Default select example">
+      <option *ngFor="let numb of userQuantity" [value]="numb">{{numb}}</option>
+    </select>
+    <button href="#" class="btn btn-primary" (click)="addToCart()" >Add to cart</button>
+  </div>
+</div>
+
+<!--Cart Products-->
+
+<ng-template #cartProduct>
+
+<div class="card mb-3 text-center" style="max-width: 540px;">
+  <div class="row g-0">
+    <a class="col-md-4">
+      <img src={{productToShow.url}} class="img-fluid rounded-start" alt="...">
+    </a>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title">{{productToShow.name}}</h5>
+        <p class="card-text">{{productToShow.description}}</p>
+        <h5 class="card-title">{{productToShow.price}}$</h5>
+        <select (ngModelChange)="quantityChanged($event)" [(ngModel)]='userSelectedValue' class="form-select mb-2" aria-label="Default select example">
+          <option *ngFor="let numb of userQuantity" [value]="numb">{{numb}}</option>
+        </select>
+        <button class="btn btn-danger" (click)="removeFromCart()">Remove <i class="fa fa-remove" aria-hidden="true"></i></button>
+      </div>
+    </div>
+  </div>
+</div>
+</ng-template>
+
+<!--Confirm Modal-->
+
+<div
+  class="modal"
+  tabindex="-1"
+  role="dialog"
+  [ngStyle]="{'display':displayStyle}">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title"> Product Added! </h4>
+      </div>
+      <div class="modal-body">
+        <p>{{userOrder.quantity}} {{this.userOrder.product.name}}{{this.userOrder.quantity > 1 ? "s" : "" }} Added Successfully! ✔</p>
+  
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" 
+                (click)="closePopup()">
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
